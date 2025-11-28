@@ -1,9 +1,9 @@
 {
-  "news": [
+  "articles": [
     {
-      "content": "Test news item",
-      "date": "2024-01-01",
-      "title": "Breaking News"
+      "category": "technology",
+      "headline": "Tech Update",
+      "timestamp": "2024-01-02"
     }
   ]
 }
