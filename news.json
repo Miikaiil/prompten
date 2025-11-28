@@ -1,9 +1,9 @@
 {
-  "articles": [
+  "stories": [
     {
-      "category": "technology",
-      "headline": "Tech Update",
-      "timestamp": "2024-01-02"
+      "published": "2024-01-03",
+      "summary": "Sunny today",
+      "title": "Weather Report"
     }
   ]
 }
