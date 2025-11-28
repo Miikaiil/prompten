@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prompten.nu | Sveriges nya AI-puls</title>
+    <title>Prompten.nu | Sveriges smartaste AI-flöde</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -12,6 +12,7 @@
                 extend: {
                     fontFamily: {
                         sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', "Liberation Mono", "Courier New", 'monospace'],
                     },
                     colors: {
                         omni: {
@@ -21,7 +22,19 @@
                             darkCard: '#1e1e1e',
                             accent: '#2563EB',
                             accentHover: '#1d4ed8',
-                            red: '#DC2626'
+                            red: '#DC2626',
+                            high: '#ef4444', 
+                            med: '#eab308', 
+                            low: '#22c55e'
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.5s ease-out',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
                         }
                     }
                 }
@@ -29,11 +42,15 @@
         }
     </script>
     <style>
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { width: 8px; height: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         .dark ::-webkit-scrollbar-thumb { background: #475569; }
         body { transition: background-color 0.3s ease, color 0.3s ease; }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
         .loading-gradient {
             background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
             background-size: 200% 100%;
@@ -68,48 +85,77 @@
                     <p class="text-[10px] text-gray-500 dark:text-gray-400 font-bold uppercase tracking-widest">Sveriges AI-puls</p>
                 </div>
             </div>
-            <div class="flex items-center gap-4">
-                <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-omni-accent">
+            <div class="flex items-center gap-3">
+                <button onclick="toggleSearch()" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </button>
+                <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300">
                     <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                     <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                 </button>
             </div>
         </div>
+        
+        <div id="search-bar" class="hidden bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 py-3 px-4 animate-fade-in-up">
+            <div class="container mx-auto max-w-3xl relative">
+                <input type="text" id="search-input" onkeyup="handleSearch()" placeholder="Sök efter nyheter..." class="w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-omni-accent text-gray-900 dark:text-white">
+                <button onclick="toggleSearch()" class="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <nav class="border-b border-gray-200 dark:border-gray-800 bg-omni-bg dark:bg-omni-darkBg">
+            <div class="container mx-auto max-w-3xl px-4 overflow-x-auto no-scrollbar">
+                <div class="flex space-x-6 py-3 text-sm font-bold uppercase tracking-wide whitespace-nowrap" id="category-list">
+                    <button class="text-gray-400">Laddar kategorier...</button>
+                </div>
+            </div>
+        </nav>
     </header>
 
-    <!-- MAIN CONTENT -->
     <main class="flex-grow container mx-auto max-w-3xl px-4 py-6 space-y-8">
         <!-- Live Ticker -->
         <div class="bg-omni-card dark:bg-omni-darkCard border border-omni-accent/20 rounded-lg p-3 flex items-center gap-3 shadow-sm overflow-hidden">
             <span class="flex-shrink-0 bg-red-100 dark:bg-red-900/30 text-omni-red text-xs font-bold px-2 py-1 rounded uppercase tracking-wide animate-pulse">Live</span>
             <div class="overflow-hidden relative w-full h-6">
-                 <p class="absolute w-full animate-marquee whitespace-nowrap text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Just nu: OpenAI lanserar o4-mini • Larmrapport: Sverige halkar efter i AI-racet • Midjourney släpper videoverktyg • Microsoft kan dumpa OpenAI för Anthropic
+                 <p id="live-ticker-text" class="absolute w-full animate-marquee whitespace-nowrap text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Laddar senaste nytt...
                 </p>
             </div>
         </div>
 
-        <!-- Top Story -->
-        <section id="top-story" class="animate-fade-in-up">
-            <!-- Laddar... -->
-            <div class="h-64 bg-gray-200 dark:bg-gray-800 rounded-xl animate-pulse"></div>
+        <!-- Top Story Area -->
+        <section id="top-story" class="animate-fade-in-up transition-all duration-300">
+            <!-- Content -->
         </section>
 
         <!-- Divider -->
-        <div class="flex items-center gap-4">
-            <h2 class="text-sm font-bold uppercase tracking-widest text-gray-400">Senaste Dygnet</h2>
+        <div class="flex items-center gap-4" id="feed-header">
+            <h2 class="text-sm font-bold uppercase tracking-widest text-gray-400">Nyhetsflöde</h2>
             <div class="h-px bg-gray-200 dark:bg-gray-800 flex-grow"></div>
         </div>
 
         <!-- News Grid -->
-        <section id="news-feed" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Laddar... -->
-            <div class="h-48 bg-gray-200 dark:bg-gray-800 rounded-lg animate-pulse"></div>
-            <div class="h-48 bg-gray-200 dark:bg-gray-800 rounded-lg animate-pulse"></div>
+        <section id="news-feed" class="grid grid-cols-1 md:grid-cols-2 gap-6 transition-opacity duration-300">
+            <!-- Content -->
+        </section>
+        
+        <!-- Newsletter -->
+        <section class="bg-omni-accent/10 dark:bg-omni-accent/5 rounded-xl p-8 text-center border border-omni-accent/20 mt-12">
+            <h3 class="text-xl font-bold mb-2">Missa inga genombrott</h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 max-w-md mx-auto">Vår AI väljer ut veckans viktigaste händelser åt dig.</p>
+            <div class="flex max-w-sm mx-auto gap-2">
+                <input type="email" placeholder="din@email.se" class="flex-grow px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-omni-accent">
+                <button class="bg-omni-accent hover:bg-omni-accentHover text-white px-4 py-2 rounded-lg font-bold transition-colors">Gå med</button>
+            </div>
         </section>
     </main>
 
-    <!-- FOOTER -->
     <footer class="bg-omni-card dark:bg-omni-darkCard border-t border-gray-200 dark:border-gray-800 py-8 mt-8 transition-colors">
         <div class="container mx-auto max-w-3xl px-4 text-center">
             <div class="flex justify-center items-center gap-2 mb-4 opacity-50">
@@ -118,77 +164,235 @@
                 </svg>
             </div>
             <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Drivs av en <strong>automatiserad AI-redaktion</strong>.</p>
-            <p class="text-xs text-gray-400 dark:text-gray-600">© 2025 Prompten.nu. Innehållet är kuraterat från publika källor.</p>
+            <p class="text-xs text-gray-400 dark:text-gray-600">© 2025 Prompten.nu.</p>
         </div>
     </footer>
 
-    <!-- JAVASCRIPT LOGIC -->
     <script>
+        // Global state
+        let allNewsData = { topStory: null, newsItems: [] };
+        let activeCategory = 'all';
+        const APP_NAME = "Prompten.nu"; // Viktigt för UTM-taggar
+
+        function getCategoryScore(category) {
+            const score = localStorage.getItem('score_' + category);
+            return score ? parseInt(score) : 0;
+        }
+
+        function incrementCategoryScore(category) {
+            const current = getCategoryScore(category);
+            localStorage.setItem('score_' + category, current + 1);
+        }
+
         async function loadNews() {
             try {
-                // Hämta news.json från samma mapp
                 const response = await fetch('news.json');
-                
-                if (!response.ok) {
-                    throw new Error('Kunde inte hitta news.json');
-                }
+                if (!response.ok) throw new Error('Kunde inte hitta news.json');
                 
                 const data = await response.json();
                 
-                // Rendera datan
-                if (data.topStory) renderTopStory(data.topStory);
-                if (data.newsItems) renderNewsGrid(data.newsItems);
+                if (data.newsItems && data.newsItems.length > 0) {
+                    data.newsItems.sort((a, b) => {
+                        const scoreA = getCategoryScore(a.category);
+                        const scoreB = getCategoryScore(b.category);
+                        return scoreB - scoreA;
+                    });
+                }
+
+                allNewsData = data; 
+                updateTicker(data);
+                renderCategories();
+                renderView();
                 
             } catch (error) {
-                console.error("Fel vid hämtning av nyheter:", error);
-                document.getElementById('top-story').innerHTML = `
-                    <div class="p-10 text-center text-gray-500 border-2 border-dashed border-gray-300 rounded-xl">
-                        <p class="font-bold">Kunde inte ladda nyheter</p>
-                        <p class="text-sm mt-2">Se till att filen <code>news.json</code> ligger i samma mapp som denna fil.</p>
-                        <p class="text-xs mt-4 text-gray-400">${error.message}</p>
-                    </div>`;
+                console.error("Fel:", error);
+                document.getElementById('top-story').innerHTML = `<div class="p-10 text-center text-gray-500">Kunde inte ladda nyheter...</div>`;
             }
         }
 
-        function renderTopStory(story) {
-            document.getElementById('top-story').innerHTML = `
-                <article class="group cursor-pointer bg-omni-card dark:bg-omni-darkCard rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-lg hover:border-omni-accent/30 transition-all duration-300">
-                    <div class="relative h-64 md:h-80 overflow-hidden">
-                        <div class="absolute inset-0 bg-gray-200 dark:bg-gray-800 loading-gradient"></div>
-                        <img src="${story.image}" alt="${story.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" onload="this.previousElementSibling.style.display='none'" onerror="this.src='https://placehold.co/800x400/1e1e1e/FFF?text=AI+News'">
-                        <div class="absolute top-4 left-4"><span class="bg-omni-accent text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-lg">${story.category}</span></div>
-                    </div>
-                    <div class="p-6 md:p-8">
-                        <div class="flex items-center gap-2 mb-3 text-xs font-bold text-gray-400 uppercase tracking-widest"><span class="text-omni-accent">${story.source}</span><span>•</span><span>${story.time} sedan</span></div>
-                        <h2 class="text-2xl md:text-4xl font-black text-gray-900 dark:text-white mb-4 leading-tight group-hover:text-omni-accent transition-colors">${story.title}</h2>
-                        <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed line-clamp-3">${story.summary}</p>
-                        <div class="mt-6 flex items-center text-omni-accent font-bold text-sm group-hover:translate-x-2 transition-transform">
-                            LÄS HELA ARTIKELN 
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                        </div>
-                    </div>
-                </article>`;
+        function updateTicker(data) {
+            const headlines = [];
+            if (data.topStory) headlines.push(data.topStory.title);
+            if (data.newsItems) data.newsItems.forEach(item => headlines.push(item.title));
+            document.getElementById('live-ticker-text').textContent = "Just nu: " + headlines.join(" • ");
         }
 
-        function renderNewsGrid(items) {
-            document.getElementById('news-feed').innerHTML = items.map(item => `
-                <article class="group cursor-pointer bg-omni-card dark:bg-omni-darkCard rounded-lg shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col h-full">
+        function renderCategories() {
+            const categories = new Set(['Alla']);
+            if (allNewsData.topStory) categories.add(allNewsData.topStory.category);
+            allNewsData.newsItems.forEach(item => categories.add(item.category));
+
+            const catList = document.getElementById('category-list');
+            catList.innerHTML = Array.from(categories).map(cat => {
+                const isActive = (cat === 'Alla' && activeCategory === 'all') || cat === activeCategory;
+                const activeClass = isActive ? 'text-omni-accent border-b-2 border-omni-accent pb-1' : 'text-gray-500 hover:text-gray-900 dark:hover:text-gray-300 transition-colors';
+                return `<button onclick="setCategory('${cat}')" class="${activeClass}">${cat}</button>`;
+            }).join('');
+        }
+
+        function setCategory(cat) {
+            activeCategory = cat === 'Alla' ? 'all' : cat;
+            renderCategories();
+            renderView();
+        }
+
+        function toggleSearch() {
+            const bar = document.getElementById('search-bar');
+            bar.classList.toggle('hidden');
+            if (!bar.classList.contains('hidden')) {
+                document.getElementById('search-input').focus();
+            } else {
+                document.getElementById('search-input').value = '';
+                renderView();
+            }
+        }
+
+        function handleSearch() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            renderView(query);
+        }
+
+        function renderView(searchQuery = '') {
+            const topStoryContainer = document.getElementById('top-story');
+            const gridContainer = document.getElementById('news-feed');
+            
+            let filteredItems = allNewsData.newsItems.filter(item => {
+                const matchesCat = activeCategory === 'all' || item.category === activeCategory;
+                const matchesSearch = item.title.toLowerCase().includes(searchQuery) || item.summary.toLowerCase().includes(searchQuery);
+                return matchesCat && matchesSearch;
+            });
+
+            let showTopStory = true;
+            if (activeCategory !== 'all') {
+                if (allNewsData.topStory && allNewsData.topStory.category !== activeCategory) {
+                    showTopStory = false;
+                }
+            }
+            if (searchQuery !== '') {
+                showTopStory = false;
+                if (allNewsData.topStory && (allNewsData.topStory.title.toLowerCase().includes(searchQuery) || allNewsData.topStory.summary.toLowerCase().includes(searchQuery))) {
+                    filteredItems.unshift(allNewsData.topStory);
+                }
+            }
+
+            if (showTopStory && allNewsData.topStory) {
+                topStoryContainer.classList.remove('hidden');
+                topStoryContainer.innerHTML = createCardHTML(allNewsData.topStory, true);
+            } else {
+                topStoryContainer.classList.add('hidden');
+                topStoryContainer.innerHTML = '';
+            }
+
+            if (filteredItems.length > 0) {
+                gridContainer.innerHTML = filteredItems.map(item => createCardHTML(item, false)).join('');
+            } else {
+                gridContainer.innerHTML = `<div class="col-span-full text-center py-10 text-gray-500">Inga nyheter hittades.</div>`;
+            }
+        }
+
+        function getImpactColor(score) {
+            if (score >= 80) return 'bg-omni-high shadow-[0_0_10px_rgba(239,68,68,0.5)]'; 
+            if (score >= 50) return 'bg-omni-med'; 
+            return 'bg-omni-low';
+        }
+
+        // Helper för att skapa korrekta Unsplash-länkar med UTM-taggar
+        function formatUnsplashCredit(creditString) {
+            if (!creditString) return '';
+            
+            // Rensa stringen (ta bort " / Unsplash" om det redan finns)
+            let name = creditString.replace(' / Unsplash', '').trim();
+            
+            // Unsplash kräver dessa UTM-taggar
+            const utm = `?utm_source=${APP_NAME}&utm_medium=referral`;
+            const unsplashLink = `https://unsplash.com/${utm}`;
+            const searchLink = `https://unsplash.com/s/photos/${encodeURIComponent(name)}${utm}`;
+            
+            return `
+                <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-[10px] text-white/90 font-medium z-10 pointer-events-auto">
+                    Foto: <a href="${searchLink}" target="_blank" rel="noopener" class="hover:text-white underline decoration-white/50 hover:decoration-white transition-colors">${name}</a> på <a href="${unsplashLink}" target="_blank" rel="noopener" class="hover:text-white underline decoration-white/50 hover:decoration-white transition-colors">Unsplash</a>
+                </div>
+            `;
+        }
+
+        function createCardHTML(item, isTopStory) {
+            const impactScore = item.impact || Math.floor(Math.random() * (95 - 40) + 40);
+            const impactColor = getImpactColor(impactScore);
+            const impactWidth = impactScore + "%";
+            const clickHandler = `incrementCategoryScore('${item.category}')`;
+            
+            // Generera korrekt attribution HTML
+            const creditHTML = formatUnsplashCredit(item.imageCredit);
+
+            if (isTopStory) {
+                return `
+                <article class="group cursor-pointer bg-omni-card dark:bg-omni-darkCard rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-lg hover:border-omni-accent/30 transition-all duration-300" onclick="${clickHandler}">
+                    <div class="relative h-64 md:h-80 overflow-hidden">
+                        <div class="absolute inset-0 bg-gray-200 dark:bg-gray-800 loading-gradient"></div>
+                        <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" onload="this.previousElementSibling.style.display='none'" onerror="this.src='https://placehold.co/800x400/1e1e1e/FFF?text=AI+News'">
+                        <div class="absolute top-4 left-4"><span class="bg-omni-accent text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-lg">${item.category}</span></div>
+                        
+                        ${creditHTML}
+
+                        <!-- IMPACT BAR OVERLAY -->
+                        <div class="absolute bottom-0 left-0 w-full h-1 bg-black/20 backdrop-blur">
+                            <div class="h-full ${impactColor} transition-all duration-1000" style="width: ${impactWidth}"></div>
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-2 text-xs font-bold text-gray-400 uppercase tracking-widest">
+                                <span class="text-omni-accent">${item.source}</span>
+                                <span>•</span>
+                                <span>${item.time} sedan</span>
+                            </div>
+                            <div class="flex items-center gap-1" title="Market Impact Score: ${impactScore}/100">
+                                <span class="text-[10px] font-mono text-gray-400">IMPACT</span>
+                                <div class="w-16 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                    <div class="h-full ${impactColor}" style="width: ${impactWidth}"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 class="text-2xl md:text-4xl font-black text-gray-900 dark:text-white mb-4 leading-tight group-hover:text-omni-accent transition-colors">${item.title}</h2>
+                        <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed line-clamp-3">${item.summary}</p>
+                    </div>
+                </article>`;
+            } else {
+                return `
+                <article class="group cursor-pointer bg-omni-card dark:bg-omni-darkCard rounded-lg shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col h-full" onclick="${clickHandler}">
                     <div class="relative h-48 overflow-hidden">
                         <div class="absolute inset-0 bg-gray-200 dark:bg-gray-800 loading-gradient"></div>
                         <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onload="this.previousElementSibling.style.display='none'" onerror="this.src='https://placehold.co/600x400/1e1e1e/FFF?text=News'">
+                        
+                        ${creditHTML}
+
+                         <!-- IMPACT BAR MINI -->
+                        <div class="absolute bottom-0 left-0 w-full h-1 bg-black/20">
+                            <div class="h-full ${impactColor}" style="width: ${impactWidth}"></div>
+                        </div>
                     </div>
                     <div class="p-5 flex flex-col flex-grow">
-                        <div class="flex items-center justify-between mb-3 text-xs font-bold uppercase tracking-wider"><span class="text-omni-accent">${item.source}</span><span class="text-gray-400">${item.time}</span></div>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="text-xs font-bold uppercase tracking-wider flex gap-2">
+                                <span class="text-omni-accent">${item.source}</span>
+                            </div>
+                            <!-- Impact Badge -->
+                            <div class="px-2 py-0.5 rounded text-[10px] font-bold bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-500" title="Impact Score">
+                                ⚡ ${impactScore}
+                            </div>
+                        </div>
                         <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover:text-omni-accent transition-colors">${item.title}</h3>
                         <p class="text-gray-500 dark:text-gray-400 text-sm line-clamp-3 mb-4 flex-grow">${item.summary}</p>
                         <div class="pt-4 border-t border-gray-100 dark:border-gray-800 flex justify-between items-center">
                             <span class="text-[10px] font-bold bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 px-2 py-1 rounded">${item.category}</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-300 dark:text-gray-600 group-hover:text-omni-accent transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                            <span class="text-gray-400 text-xs">${item.time}</span>
                         </div>
                     </div>
-                </article>`).join('');
+                </article>`;
+            }
         }
 
+        // --- THEME ---
         function toggleTheme() {
             const html = document.querySelector('html');
             if (html.classList.contains('dark')) { html.classList.remove('dark'); localStorage.setItem('theme', 'light'); }
