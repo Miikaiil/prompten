@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="sv" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompten.nu | Sveriges nya AI-puls</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+                    },
+                    colors: {
+                        omni: {
+                            bg: '#f9f9f9',
+                            card: '#ffffff',
+                            darkBg: '#121212',
+                            darkCard: '#1e1e1e',
+                            accent: '#2563EB',
+                            accentHover: '#1d4ed8',
+                            red: '#DC2626'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+        body { transition: background-color 0.3s ease, color 0.3s ease; }
+        .loading-gradient {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        .dark .loading-gradient {
+            background: linear-gradient(90deg, #2d2d2d 25%, #3d3d3d 50%, #2d2d2d 75%);
+        }
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body class="bg-omni-bg dark:bg-omni-darkBg text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 bg-omni-card/95 dark:bg-omni-darkCard/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 shadow-sm transition-colors">
+        <div class="container mx-auto max-w-3xl px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3 group cursor-pointer" onclick="window.location.reload()">
+                <div class="relative w-10 h-10 flex items-center justify-center bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg shadow-lg group-hover:scale-105 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 font-bold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M8 9l3 3-3 3m5 0h3" />
+                    </svg>
+                    <span class="absolute -top-1 -right-1 flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-omni-accent opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-omni-accent"></span>
+                    </span>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-black tracking-tighter lowercase leading-none font-mono">prompten<span class="text-omni-accent">.</span>nu</h1>
+                    <p class="text-[10px] text-gray-500 dark:text-gray-400 font-bold uppercase tracking-widest">Sveriges AI-puls</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-omni-accent">
+                    <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow container mx-auto max-w-3xl px-4 py-6 space-y-8">
+        <!-- Live Ticker -->
+        <div class="bg-omni-card dark:bg-omni-darkCard border border-omni-accent/20 rounded-lg p-3 flex items-center gap-3 shadow-sm overflow-hidden">
+            <span class="flex-shrink-0 bg-red-100 dark:bg-red-900/30 text-omni-red text-xs font-bold px-2 py-1 rounded uppercase tracking-wide animate-pulse">Live</span>
+            <div class="overflow-hidden relative w-full h-6">
+                 <p class="absolute w-full animate-marquee whitespace-nowrap text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Just nu: OpenAI lanserar o4-mini • Larmrapport: Sverige halkar efter i AI-racet • Midjourney släpper videoverktyg • Microsoft kan dumpa OpenAI för Anthropic
+                </p>
+            </div>
+        </div>
+
+        <!-- Top Story -->
+        <section id="top-story" class="animate-fade-in-up">
+            <!-- Laddar... -->
+            <div class="h-64 bg-gray-200 dark:bg-gray-800 rounded-xl animate-pulse"></div>
+        </section>
+
+        <!-- Divider -->
+        <div class="flex items-center gap-4">
+            <h2 class="text-sm font-bold uppercase tracking-widest text-gray-400">Senaste Dygnet</h2>
+            <div class="h-px bg-gray-200 dark:bg-gray-800 flex-grow"></div>
+        </div>
+
+        <!-- News Grid -->
+        <section id="news-feed" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Laddar... -->
+            <div class="h-48 bg-gray-200 dark:bg-gray-800 rounded-lg animate-pulse"></div>
+            <div class="h-48 bg-gray-200 dark:bg-gray-800 rounded-lg animate-pulse"></div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-omni-card dark:bg-omni-darkCard border-t border-gray-200 dark:border-gray-800 py-8 mt-8 transition-colors">
+        <div class="container mx-auto max-w-3xl px-4 text-center">
+            <div class="flex justify-center items-center gap-2 mb-4 opacity-50">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3" />
+                </svg>
+            </div>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Drivs av en <strong>automatiserad AI-redaktion</strong>.</p>
+            <p class="text-xs text-gray-400 dark:text-gray-600">© 2025 Prompten.nu. Innehållet är kuraterat från publika källor.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        async function loadNews() {
+            try {
+                // Hämta news.json från samma mapp
+                const response = await fetch('news.json');
+                
+                if (!response.ok) {
+                    throw new Error('Kunde inte hitta news.json');
+                }
+                
+                const data = await response.json();
+                
+                // Rendera datan
+                if (data.topStory) renderTopStory(data.topStory);
+                if (data.newsItems) renderNewsGrid(data.newsItems);
+                
+            } catch (error) {
+                console.error("Fel vid hämtning av nyheter:", error);
+                document.getElementById('top-story').innerHTML = `
+                    <div class="p-10 text-center text-gray-500 border-2 border-dashed border-gray-300 rounded-xl">
+                        <p class="font-bold">Kunde inte ladda nyheter</p>
+                        <p class="text-sm mt-2">Se till att filen <code>news.json</code> ligger i samma mapp som denna fil.</p>
+                        <p class="text-xs mt-4 text-gray-400">${error.message}</p>
+                    </div>`;
+            }
+        }
+
+        function renderTopStory(story) {
+            document.getElementById('top-story').innerHTML = `
+                <article class="group cursor-pointer bg-omni-card dark:bg-omni-darkCard rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-lg hover:border-omni-accent/30 transition-all duration-300">
+                    <div class="relative h-64 md:h-80 overflow-hidden">
+                        <div class="absolute inset-0 bg-gray-200 dark:bg-gray-800 loading-gradient"></div>
+                        <img src="${story.image}" alt="${story.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" onload="this.previousElementSibling.style.display='none'" onerror="this.src='https://placehold.co/800x400/1e1e1e/FFF?text=AI+News'">
+                        <div class="absolute top-4 left-4"><span class="bg-omni-accent text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-lg">${story.category}</span></div>
+                    </div>
+                    <div class="p-6 md:p-8">
+                        <div class="flex items-center gap-2 mb-3 text-xs font-bold text-gray-400 uppercase tracking-widest"><span class="text-omni-accent">${story.source}</span><span>•</span><span>${story.time} sedan</span></div>
+                        <h2 class="text-2xl md:text-4xl font-black text-gray-900 dark:text-white mb-4 leading-tight group-hover:text-omni-accent transition-colors">${story.title}</h2>
+                        <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed line-clamp-3">${story.summary}</p>
+                        <div class="mt-6 flex items-center text-omni-accent font-bold text-sm group-hover:translate-x-2 transition-transform">
+                            LÄS HELA ARTIKELN 
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                        </div>
+                    </div>
+                </article>`;
+        }
+
+        function renderNewsGrid(items) {
+            document.getElementById('news-feed').innerHTML = items.map(item => `
+                <article class="group cursor-pointer bg-omni-card dark:bg-omni-darkCard rounded-lg shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col h-full">
+                    <div class="relative h-48 overflow-hidden">
+                        <div class="absolute inset-0 bg-gray-200 dark:bg-gray-800 loading-gradient"></div>
+                        <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onload="this.previousElementSibling.style.display='none'" onerror="this.src='https://placehold.co/600x400/1e1e1e/FFF?text=News'">
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <div class="flex items-center justify-between mb-3 text-xs font-bold uppercase tracking-wider"><span class="text-omni-accent">${item.source}</span><span class="text-gray-400">${item.time}</span></div>
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight group-hover:text-omni-accent transition-colors">${item.title}</h3>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm line-clamp-3 mb-4 flex-grow">${item.summary}</p>
+                        <div class="pt-4 border-t border-gray-100 dark:border-gray-800 flex justify-between items-center">
+                            <span class="text-[10px] font-bold bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 px-2 py-1 rounded">${item.category}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-300 dark:text-gray-600 group-hover:text-omni-accent transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                        </div>
+                    </div>
+                </article>`).join('');
+        }
+
+        function toggleTheme() {
+            const html = document.querySelector('html');
+            if (html.classList.contains('dark')) { html.classList.remove('dark'); localStorage.setItem('theme', 'light'); }
+            else { html.classList.add('dark'); localStorage.setItem('theme', 'dark'); }
+        }
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) { document.querySelector('html').classList.add('dark'); } else { document.querySelector('html').classList.remove('dark'); }
+        
+        loadNews();
+    </script>
+</body>
+</html>

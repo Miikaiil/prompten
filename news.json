@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "lastUpdated": "2025-11-28T23:30:00"
+  },
+  "topStory": {
+    "id": 1,
+    "source": "OpenAI / The Verge",
+    "time": "2 tim",
+    "title": "OpenAI släpper 'o4-mini' – sätter ny standard för resonerande AI",
+    "summary": "Nu går det undan. OpenAI rullar ut o4-mini, en modell optimerad för snabbt resonemang till en bråkdel av priset. Samtidigt släpps GPT-5.1 till betalande användare med löfte om en mer 'mänsklig' ton.",
+    "category": "Breaking",
+    "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop"
+  },
+  "newsItems": [
+    {
+      "id": 2,
+      "source": "Arbetsliv / Prevent",
+      "time": "4 dagar",
+      "title": "Larmrapport: Sverige halkar efter i AI-utvecklingen",
+      "summary": "Endast var tionde kommun använder AI i verksamheten. Kompetensbrist och dålig ekonomi pekas ut som huvudorsaker i ny tung rapport.",
+      "category": "Sverige",
+      "image": "https://images.unsplash.com/photo-1509356843151-3e7d96241e11?q=80&w=600&auto=format&fit=crop"
+    },
+    {
+      "id": 3,
+      "source": "TechCrunch",
+      "time": "12 tim",
+      "title": "Midjourney V7 lanserar video – utmanar Hollywood",
+      "summary": "Den populära bildgeneratorn tar steget in i rörlig bild. Resultaten beskrivs som 'kusligt fotorealistiska' av betatestare.",
+      "category": "Verktyg",
+      "image": "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=600&auto=format&fit=crop"
+    },
+    {
+      "id": 4,
+      "source": "The Information",
+      "time": "1 dag",
+      "title": "Rykte: Microsoft kan dumpa OpenAI-exklusivitet",
+      "summary": "Källor menar att Microsoft planerar att integrera Anthropic Claude i Office 365, vilket skulle vara ett hårt slag mot OpenAI-partnerskapet.",
+      "category": "Business",
+      "image": "https://images.unsplash.com/photo-1642132652859-3ef5a22554e8?q=80&w=600&auto=format&fit=crop"
+    },
+    {
+      "id": 5,
+      "source": "Google DeepMind",
+      "time": "6 tim",
+      "title": "Google Veo 3 nu tillgängligt för alla kreatörer",
+      "summary": "Efter månader av väntan släpps nu Googles videoverktyg brett. Integreras direkt i YouTube Shorts och Workspace.",
+      "category": "Verktyg",
+      "image": "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?q=80&w=600&auto=format&fit=crop"
+    }
+  ]
+}
