@@ -1,9 +1,72 @@
 {
-  "stories": [
+  "meta": {
+    "lastUpdated": "2025-11-29T10:00:00"
+  },
+  "topStory": {
+    "id": 1,
+    "source": "OpenAI / The Verge",
+    "time": "2 tim",
+    "title": "OpenAI släpper 'o4-mini' – sätter ny standard för resonerande AI",
+    "summary": "Nu går det undan. OpenAI rullar ut o4-mini, en modell optimerad för snabbt resonemang till en bråkdel av priset. Samtidigt släpps GPT-5.1 till betalande användare med löfte om en mer 'mänsklig' ton.",
+    "content": "<p>I en överraskande demonstration visade Sam Altman upp den nya modellen som verkar kunna resonera som en människa. Experter är både häpna och livrädda.</p><h3>Vad är nytt?</h3><p>Modellen är 40% snabbare än föregångaren och kostar hälften så mycket att köra. Detta öppnar dörren för 'Agentic AI' på en helt ny nivå.</p>",
+    "category": "Breaking",
+    "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop",
+    "imageCredit": "Jonathan Kemper",
+    "url": "https://www.theverge.com/ai",
+    "impact": 95
+  },
+  "newsItems": [
     {
-      "published": "2024-01-03",
-      "summary": "Sunny today",
-      "title": "Weather Report"
+      "id": 2,
+      "source": "Arbetsliv / Prevent",
+      "time": "4 dagar",
+      "title": "Larmrapport: Sverige halkar efter i AI-utvecklingen",
+      "summary": "Endast var tionde kommun använder AI i verksamheten. Kompetensbrist och dålig ekonomi pekas ut som huvudorsaker i ny tung rapport.",
+      "content": "<p>Svenska kommuner och regioner ser stora möjligheter med digitalisering – men få har tagit steget fullt ut till att använda AI.</p><p>Det är främst ekonomi och kompetensbrist som bromsar utvecklingen, visar en ny rapport.</p>",
+      "category": "Sverige",
+      "image": "https://images.unsplash.com/photo-1509356843151-3e7d96241e11?q=80&w=600&auto=format&fit=crop",
+      "imageCredit": "Fredrik Öhlander",
+      "url": "https://www.prevent.se",
+      "impact": 75
+    },
+    {
+      "id": 3,
+      "source": "TechCrunch",
+      "time": "12 tim",
+      "title": "Midjourney V7 lanserar video – utmanar Hollywood",
+      "summary": "Den populära bildgeneratorn tar steget in i rörlig bild. Resultaten beskrivs som 'kusligt fotorealistiska' av betatestare.",
+      "content": "<p>Midjourney har länge varit kungen av stillbilder. Nu ger de sig in i videokriget mot OpenAI:s Sora.</p><p>V7-modellen kan generera upp till 10 sekunder video i 4K-upplösning.</p>",
+      "category": "Verktyg",
+      "image": "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=600&auto=format&fit=crop",
+      "imageCredit": "Jakob Owens",
+      "url": "https://techcrunch.com",
+      "impact": 88
+    },
+    {
+      "id": 4,
+      "source": "The Information",
+      "time": "1 dag",
+      "title": "Rykte: Microsoft kan dumpa OpenAI-exklusivitet",
+      "summary": "Källor menar att Microsoft planerar att integrera Anthropic Claude i Office 365, vilket skulle vara ett hårt slag mot OpenAI-partnerskapet.",
+      "content": "<p>Enligt insiders på Redmond vill Microsoft minska sitt beroende av Sam Altmans bolag.</p><p>Claude 3.5 Sonnet ses som en säkrare och mer stabil modell för företagskunder.</p>",
+      "category": "Business",
+      "image": "https://images.unsplash.com/photo-1642132652859-3ef5a22554e8?q=80&w=600&auto=format&fit=crop",
+      "imageCredit": "Windows",
+      "url": "https://theinformation.com",
+      "impact": 60
+    },
+    {
+      "id": 5,
+      "source": "Google DeepMind",
+      "time": "6 tim",
+      "title": "Google Veo 3 nu tillgängligt för alla kreatörer",
+      "summary": "Efter månader av väntan släpps nu Googles videoverktyg brett. Integreras direkt i YouTube Shorts och Workspace.",
+      "content": "<p>Google slår på stora trumman. Veo 3 är nu integrerat direkt i YouTube Studio.</p><p>Kreatörer kan generera bakgrunder och effekter utan att lämna plattformen.</p>",
+      "category": "Verktyg",
+      "image": "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?q=80&w=600&auto=format&fit=crop",
+      "imageCredit": "Mitchell Luo",
+      "url": "https://deepmind.google",
+      "impact": 55
     }
   ]
 }
