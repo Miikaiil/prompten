@@ -1,0 +1,14 @@
+{
+  "news_items": [
+    {
+      "content": "Test content 1",
+      "date": "2024-11-29",
+      "title": "Test Article 1"
+    },
+    {
+      "content": "Test content 2",
+      "date": "2024-11-28",
+      "title": "Test Article 2"
+    }
+  ]
+}
