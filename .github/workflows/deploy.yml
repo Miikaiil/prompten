@@ -14,7 +14,7 @@ jobs:
       - name: List files in workspace
         run: ls -lR
 
-      # Byt till rätt sökväg om dina filer inte ligger i repots rot!
+      # Om dina filer ligger i ./public/:
       - name: Copy files via SFTP
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -22,5 +22,5 @@ jobs:
           port: ${{ secrets.SFTP_PORT }}
           username: ${{ secrets.SFTP_USER }}
           password: ${{ secrets.SFTP_PASSWORD }}
-          source: "./index.html ./news.json"     # <-- ÄNDRA denna rad om filerna ligger i t.ex. ./public/
-          target: "/public_html"                 # <-- ÄNDRA om din webbrotsmapp heter något annat
+          source: "./public/index.html ./public/news.json"
+          target: "/public_html"
