@@ -1,33 +1,3 @@
 {
-  "meta": {
-    "last_updated": "2024-07-03T10:00:00Z"
-  },
-  "news_items": [
-    {
-      "category": "Verktyg",
-      "content": "<p>Ett nytt AI-verktyg lanseras för att effektivisera företagsprocesser.</p>",
-      "id": "2",
-      "image": "https://source.unsplash.com/800x450/?microchip",
-      "image_credit": "Jane Smith",
-      "impact": 55,
-      "source": "Wired",
-      "summary": "AI-verktyg för företag lanseras.",
-      "time": "2024-07-03T06:00:00Z",
-      "title": "Nytt AI-verktyg för företag",
-      "url": "https://wired.com/ai-tool"
-    }
-  ],
-  "top_story": {
-    "category": "Breaking",
-    "content": "<p>Forskare har utvecklat en ny AI-modell som överträffar tidigare rekord i språkförståelse.</p>",
-    "id": "1",
-    "image": "https://source.unsplash.com/800x450/?ai,robot",
-    "image_credit": "John Doe",
-    "impact": 90,
-    "source": "The Verge",
-    "summary": "Ny AI-modell slår rekord i språkförståelse.",
-    "time": "2024-07-03T07:30:00Z",
-    "title": "AI slår nytt rekord i språkförståelse",
-    "url": "https://www.theverge.com/ai-breakthrough"
-  }
+  "sampleKey": "any"
 }
