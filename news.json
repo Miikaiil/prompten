@@ -1,3 +1,31 @@
 {
-  "sampleKey": "any"
+  "news_json": {
+    "meta": {
+      "last_updated": "2024-06-14T12:35:16Z"
+    },
+    "news_items": [],
+    "top_story": {
+      "category": "string",
+      "content": "string",
+      "id": "string",
+      "image": "https://example.com",
+      "image_credit": "string",
+      "impact": 1,
+      "source": "string",
+      "summary": "string",
+      "time": "2024-01-01T00:00:00Z",
+      "title": "string",
+      "url": "https://example.com"
+    }
+  },
+  "messages": [
+    {
+      "content": "Here is a list of AI-generated articles:\n{\"category\":\"string\",\"content\":\"string\",\"id\":\"string\",\"image\":\"https://example.com\",\"image_credit\":\"string\",\"impact\":1,\"source\":\"string\",\"summary\":\"string\",\"time\":\"2024-01-01T00:00:00Z\",\"title\":\"string\",\"url\":\"https://example.com\"}\n\nTransform and organize them into the required news.json structure for prompten.nu, with meta, top_story, and news_items as per the schema.",
+      "role": "user"
+    },
+    {
+      "role": "assistant",
+      "toolCalls": []
+    }
+  ]
 }
