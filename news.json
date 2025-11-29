@@ -1,3 +1,37 @@
 {
-  "sampleKey": "any"
+  "conclusion": "Sammantaget visar veckans nyheter en AI-sektor i snabb mognad. Medan investerare satsar stort på de grundläggande byggstenarna, som databasplattformar, tvingar själva teknologin de ledande aktörerna att tänka nytt kring affärsstrategi och kundrelationer. Denna dubbla utveckling – där både infrastrukturen och marknadsstrategierna revolutioneras samtidigt – signalerar en ny fas i AI-eran, där långsiktigt värdeskapande och strategisk positionering blir allt viktigare.",
+  "introduction": "AI-revolutionen fortsätter att skaka om tech-industrin i grunden. Denna vecka ser vi två tydliga trender: dels de astronomiska värderingarna för de företag som bygger den osynliga men kritiska infrastrukturen, dels hur giganter som OpenAI och Google omdefinierar själva spelplanen för hur teknologin når marknaden. Från miljardvärderingar byggda på strategiska val till nya go-to-market-strategier, är det tydligt att AI inte bara är en produkt, utan en kraft som omformar hela affärslandskapet.",
+  "sections": [
+    {
+      "articles": [
+        {
+          "description": "Vibe coding has taken the tech industry by storm, and it’s not just the Lovables and Replits of the world that are winning. The startups building the infrastructure behind them are cashing in too. Supabase, the open-source database platform that’s become the backend of choice for the vibe-coding world, raised $100 million at a $5 billion valuation just months after closing $200 million at $2 billion. But co-founder and CEO [...]",
+          "published": "Fri, 28 Nov 2025 23:00:00 +0000",
+          "source": "TechCrunch AI",
+          "title": "Supabase hit $5B by turning down million-dollar contracts. Here’s why.",
+          "url": "https://techcrunch.com/video/supabase-hit-5b-by-turning-down-million-dollar-contracts-heres-why/"
+        },
+        {
+          "description": "Vibe coding has taken the tech industry by storm, and it’s not just the Lovables and Replits of the world that are winning. The startups building the infrastructure behind them are cashing in too. Supabase, the open-source database platform that’s become the backend of choice for the vibe-coding world, raised $100 million at a $5 billion valuation just months after closing $200 million at $2 billion. But co-founder and CEO [...]",
+          "published": "Fri, 28 Nov 2025 17:20:00 +0000",
+          "source": "TechCrunch AI",
+          "title": "Supabase CEO on the “painful” decisions that built a $5B company",
+          "url": "https://techcrunch.com/podcast/supabase-ceo-on-the-painful-decisions-that-built-a-5b-company/"
+        }
+      ],
+      "title": "Infrastrukturens Guldålder: Miljardvärderingar och Strategiska Val"
+    },
+    {
+      "articles": [
+        {
+          "description": "AI is changing how investors and startups bring their products to market. Three experts offered their insights at TechCrunch Disrupt.",
+          "published": "Fri, 28 Nov 2025 16:00:00 +0000",
+          "source": "TechCrunch AI",
+          "title": "How OpenAI and Google see AI changing go-to-market strategies",
+          "url": "https://techcrunch.com/2025/11/28/how-openai-and-google-see-ai-changing-go-to-market-strategies/"
+        }
+      ],
+      "title": "Marknadsstrategier i AI-Eran"
+    }
+  ]
 }
