@@ -1,9 +1,7 @@
 {
   "news_items": [
     {
-      "headline": "Breaking News",
-      "summary": "Important update",
-      "timestamp": "2024-11-29T10:00:00Z"
+      "sampleKey": "any"
     }
   ]
 }
